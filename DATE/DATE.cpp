@@ -18,21 +18,20 @@ DATE::DATE(int dd, int mm, int yyyy)
 
 
 DATE::~DATE()
-{
-}
+= default;
 
-int DATE::getDay()
+int DATE::getDay() const
 {
 	return day;
 }
 
-int DATE::getMonth()
+int DATE::getMonth() const
 {
 	return month;
 }
 
 
-int DATE::getYear()
+int DATE::getYear() const
 {
 	return year;
 }
@@ -50,4 +49,29 @@ void DATE::setMonth(int month)
 void DATE::setYear(int year)
 {
 	this->year = year;
+}
+
+void DATE::setAll(int day, int month, int year)
+{
+	setDay(day);
+	setMonth(month);
+	setYear(year);
+}
+
+bool DATE::isCorrect(int day, int month, int year)
+{
+	if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) 
+	{
+		if (day == 31) return true;
+	}
+	else if (month == 4 || month == 6 || month == 9 || month == 11)
+	{
+		if (day == 30) return true;
+	}
+	else if (month == 2)
+	{
+		if (day == 28 || day == 29) return true;
+	}
+	else return false;
+	return false;
 }
