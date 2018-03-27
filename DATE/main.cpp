@@ -11,13 +11,17 @@ int main()
 {
 	DATE dt;
 
-	cout << dt.getDay() << "." << dt.getMonth() << "." << dt.getYear() << endl;
+	cout << dt << endl;
 
 	int dd, mm, yy;
 	cin >> dd >> mm >> yy;
 	DATE dtt(dd, mm, yy);
+	//cin >> dtt;
+	cout << dtt << endl;
 
-	cout << dtt.getDay() << "." << dtt.getMonth() << "." << dtt.getYear() << endl;
+	dt = dt + dtt;
+
+	cout << dt;
 
     return 0;
 }

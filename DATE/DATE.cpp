@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "DATE.h"
+#include <ostream>
 
 
 DATE::DATE()
@@ -74,4 +75,42 @@ bool DATE::isCorrect(int day, int month, int year)
 	}
 	else return false;
 	return false;
+}
+
+ostream& operator<<(ostream &os, const DATE dt)
+{
+	os << dt.day << "." << dt.month << "." << dt.year;
+	return os;
+}
+
+//istream& operator >> (istream &is, DATE& dt)
+//{
+//	is >> dt.day >> dt.month >> dt.year;
+//	return is;
+//}
+
+DATE &DATE::operator=(const DATE &rd)
+{
+	this->day = rd.day;
+	this->month = rd.month;
+	this->year = rd.year;
+	return *this;
+}
+
+DATE DATE::operator+(DATE &rd)
+{
+	DATE res;
+	res.day = this->day + rd.day;
+	res.month = this->month + rd.month;
+	res.year = this->year + rd.year;
+	return res;
+}
+
+DATE DATE::operator-(DATE &rd)
+{
+	DATE res;
+	res.day = this->day - rd.day;
+	res.month = this->month - rd.month;
+	res.year = this->year - rd.year;
+	return res;
 }

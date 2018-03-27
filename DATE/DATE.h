@@ -1,4 +1,8 @@
 #pragma once
+#include <ostream>
+
+using namespace std;
+
 class DATE
 {
 public:
@@ -13,6 +17,11 @@ public:
 	void setYear(int year);
 	void setAll(int day, int month, int year);
 	bool isCorrect(int day, int month, int year);
+	DATE& operator=(const DATE& rd);
+	friend ostream& operator << (ostream& os, const DATE dt);
+	//friend istream& operator >> (istream& is, DATE& dt);
+	DATE DATE::operator + (DATE &rd);
+	DATE DATE::operator-(DATE &rd);
 
 private:
 	int day;
