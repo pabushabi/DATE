@@ -16,12 +16,14 @@ public:
 	void setMonth(int month);
 	void setYear(int year);
 	void setAll(int day, int month, int year);
-	bool isCorrect(int day, int month, int year);
+	bool isCorrect();
 	DATE& operator=(const DATE& rd);
 	friend ostream& operator << (ostream& os, const DATE dt);
 	//friend istream& operator >> (istream& is, DATE& dt);
-	DATE DATE::operator + (DATE &rd);
-	DATE DATE::operator-(DATE &rd);
+	DATE operator + (const DATE &rd);
+	DATE operator-(const DATE &rd);
+	int toDays() const;
+	float toMonths();
 
 private:
 	int day;

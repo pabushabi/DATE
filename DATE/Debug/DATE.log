@@ -1,5 +1,5 @@
-﻿  main.cpp
-  DATE.cpp
-  Создание кода...
+﻿  DATE.cpp
+c:\documents\visual studio 2015\projects\daate\date\date.cpp(198): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+c:\documents\visual studio 2015\projects\daate\date\date.cpp(82): warning C4715: DATE::isCorrect: значение возвращается не при всех путях выполнения
   DATE.vcxproj -> C:\Documents\Visual Studio 2015\Projects\daate\Debug\DATE.exe
   DATE.vcxproj -> C:\Documents\Visual Studio 2015\Projects\daate\Debug\DATE.pdb (Full PDB)

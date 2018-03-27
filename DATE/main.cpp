@@ -21,7 +21,12 @@ int main()
 
 	dt = dt + dtt;
 
-	cout << dt;
+	cout << dt << endl;
+	cout << dt.toDays() << endl;
+	cout << dt.toMonths() << endl;
+
+	if (dt.isCorrect()) cout << "correct" << endl;
+	else cout << "isn`t correct" << endl;
 
     return 0;
 }
