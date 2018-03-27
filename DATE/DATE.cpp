@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "DATE.h"
-#include <ostream>
-
 
 DATE::DATE()
 {
@@ -61,24 +59,25 @@ void DATE::setAll(int day, int month, int year)
 
 bool DATE::isCorrect()
 {
-	if (this->month >= 13) return false;
-	else
+	if (month > 13 || month < 2 || day > 32 || day < 2)
 	{
-		if (this->month == 1 || this->month == 3 || this->month == 5 || this->month == 7 ||
-			this->month == 8 || this->month == 10 || this->month == 12)
-		{
-			if (this->day >= 32) return false;
-		}
-		else if (this->month == 4 || this->month == 6 || this->month == 9 || this->month == 11)
-		{
-			if (this->day > 30) return false;
-		}
-		else if (this->month == 2)
-		{
-			if (this->day > 29) return false;
-		}
-		else return true;
+		return false;
 	}
+
+	/*if (this->month == 1 || this->month == 3 || this->month == 5 || this->month == 7 ||
+		this->month == 8 || this->month == 10 || this->month == 12)
+	{
+		if (this->day >= 32) return false;
+	}
+	else if (this->month == 4 || this->month == 6 || this->month == 9 || this->month == 11)
+	{
+		if (this->day > 30) return false;
+	}
+	else if (this->month == 2)
+	{
+		if (this->day > 29) return false;
+	}*/
+	return true;
 }
 
 ostream& operator<<(ostream &os, const DATE dt)
@@ -87,11 +86,11 @@ ostream& operator<<(ostream &os, const DATE dt)
 	return os;
 }
 
-//istream& operator >> (istream &is, DATE& dt)
-//{
-//	is >> dt.day >> dt.month >> dt.year;
-//	return is;
-//}
+istream& operator>>(istream &is, DATE& dt)
+{
+	is >> dt.day >> dt.month >> dt.year;
+	return is;
+}
 
 DATE &DATE::operator=(const DATE &rd)
 {
@@ -126,36 +125,36 @@ int DATE::toDays() const
 
 	switch (this->month)
 	{
-	case 1: 
-		{
+	case 1:
+	{
 		tmp += 31;
 		break;
-		}
+	}
 	case 2:
-		{
+	{
 		tmp += 59;
 		break;
-		}
+	}
 	case 3:
-		{
+	{
 		tmp += 90;
 		break;
-		}
+	}
 	case 4:
-		{
+	{
 		tmp += 120;
 		break;
-		}
+	}
 	case 5:
-		{
+	{
 		tmp += 151;
 		break;
-		}
+	}
 	case 6:
-		{
+	{
 		tmp += 181;
 		break;
-		}
+	}
 	case 7:
 	{
 		tmp += 212;

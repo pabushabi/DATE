@@ -1,5 +1,7 @@
 #pragma once
 #include <ostream>
+#include <ostream>
+#include <istream>
 
 using namespace std;
 
@@ -19,7 +21,7 @@ public:
 	bool isCorrect();
 	DATE& operator=(const DATE& rd);
 	friend ostream& operator << (ostream& os, const DATE dt);
-	//friend istream& operator >> (istream& is, DATE& dt);
+	friend istream& operator >> (istream& is, DATE& dt);
 	DATE operator + (const DATE &rd);
 	DATE operator-(const DATE &rd);
 	int toDays() const;
