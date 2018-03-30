@@ -226,11 +226,17 @@ int DATE::toDays() const
 	return res;
 }
 
-
 float DATE::toMonths()
 {
 	int tmp = this->year * 12;
 	float res = this->day / 12;
 	res += tmp;
+	return res;
+}
+
+string DATE::toString()
+{
+	string res;
+	res = this->getDay() + this->getMonth() + this->getYear();
 	return res;
 }
