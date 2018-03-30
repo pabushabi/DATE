@@ -57,7 +57,7 @@ void DATE::setAll(int day, int month, int year)
 	setYear(year);
 }
 
-bool DATE::isCorrect()
+bool DATE::isCorrect() const
 {
 	if (month > 13 || month < 2 || day > 32 || day < 2)
 	{
@@ -90,7 +90,7 @@ DATE &DATE::operator = (const DATE &rd)
 	return *this;
 }
 
-DATE DATE::operator + (const DATE &rd)
+DATE DATE::operator + (const DATE &rd) const
 {
 	DATE res;
 	res.day = this->day + rd.day;
@@ -99,7 +99,7 @@ DATE DATE::operator + (const DATE &rd)
 	return res;
 }
 
-DATE DATE::operator - (const DATE &rd)
+DATE DATE::operator - (const DATE &rd) const
 {
 	DATE res;
 	res.day = this->day - rd.day;
@@ -236,7 +236,7 @@ int DATE::toDays() const
 	return res;
 }
 
-float DATE::toMonths()
+float DATE::toMonths() const
 {
 	int tmp = this->year * 12;
 	float res = this->day / 12;
@@ -244,7 +244,7 @@ float DATE::toMonths()
 	return res;
 }
 
-string DATE::toString()
+string DATE::toString() const
 {
 	string res;
 	res = this->getDay() + this->getMonth() + this->getYear();

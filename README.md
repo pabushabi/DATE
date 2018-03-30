@@ -19,8 +19,8 @@ Simple class for work with date
 * ">>" - Ввод с потока
 * ">" - Больше
 * "<" - Меньше
-* "==" -Равенство
-* "!=" - Не равенство
+* "==" -Равно
+* "!=" - Не равно
 
 Также существуют следующие вспомогательные процедуры:
 * "isCorrect()" - Проверка на корректность данных
@@ -29,7 +29,8 @@ Simple class for work with date
 * "toString()" - Конвертирование в стоку
 
 Пример: 
-``` DATE example, example2;
+``` 
+DATE example, example2;
 cin >> example;
 cin >> example2;
 if (example.isCorrect() && example2.isCorrect()) 
@@ -39,4 +40,5 @@ if (example.isCorrect() && example2.isCorrect())
 		else cout << example2 << " is bigger then " << example;
 	}
 	else cout << example2 << " is equals with " << example;
-} ```
+} 
+```

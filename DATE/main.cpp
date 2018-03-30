@@ -13,8 +13,6 @@ int main()
 
 	cout << dt << endl;
 
-	//int dd, mm, yy;
-	//cin >> dd >> mm >> yy;
 	DATE dtt;
 //	cin >> dtt;
 //	cout << dtt << endl;
