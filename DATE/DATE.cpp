@@ -63,44 +63,34 @@ bool DATE::isCorrect()
 	{
 		return false;
 	}
-
-	/*if (this->month == 1 || this->month == 3 || this->month == 5 || this->month == 7 ||
-		this->month == 8 || this->month == 10 || this->month == 12)
-	{
-		if (this->day >= 32) return false;
-	}
-	else if (this->month == 4 || this->month == 6 || this->month == 9 || this->month == 11)
-	{
-		if (this->day > 30) return false;
-	}
-	else if (this->month == 2)
-	{
-		if (this->day > 29) return false;
-	}*/
 	return true;
 }
 
-ostream& operator<<(ostream &os, const DATE dt)
+ostream& operator << (ostream &os, const DATE dt)
 {
 	os << dt.day << "." << dt.month << "." << dt.year;
 	return os;
 }
 
-istream& operator>>(istream &is, DATE& dt)
+istream& operator >> (istream &is, DATE& dt)
 {
 	is >> dt.day >> dt.month >> dt.year;
 	return is;
 }
 
-DATE &DATE::operator=(const DATE &rd)
+DATE &DATE::operator = (const DATE &rd)
 {
+	if (this == &rd)
+	{
+		return  *this;
+	}
 	this->day = rd.day;
 	this->month = rd.month;
 	this->year = rd.year;
 	return *this;
 }
 
-DATE DATE::operator+(const DATE &rd)
+DATE DATE::operator + (const DATE &rd)
 {
 	DATE res;
 	res.day = this->day + rd.day;
@@ -109,13 +99,59 @@ DATE DATE::operator+(const DATE &rd)
 	return res;
 }
 
-DATE DATE::operator-(const DATE &rd)
+DATE DATE::operator - (const DATE &rd)
 {
 	DATE res;
 	res.day = this->day - rd.day;
 	res.month = this->month - rd.month;
 	res.year = this->year - rd.year;
 	return res;
+}
+
+bool operator > (const DATE &ld, const DATE &rd)
+{
+	if (ld.getYear() > rd.getYear())
+	{
+		return true;
+	}
+	else if (ld.getYear() == rd.getYear())
+	{
+		if (ld.getMonth() > rd.getMonth()) return true;
+		else if (ld.getMonth() == rd.getMonth())
+		{
+			if (ld.getDay() > rd.getDay()) return true;
+			else { return false; }
+		}
+	}
+	return false;
+}
+
+bool operator < (const DATE &ld, const DATE &rd)
+{
+	if (ld.getYear() < rd.getYear())
+	{
+		return true;
+	}
+	else if (ld.getYear() == rd.getYear())
+	{
+		if (ld.getMonth() < rd.getMonth()) return true;
+		else if (ld.getMonth() == rd.getMonth())
+		{
+			if (ld.getDay() < rd.getDay()) return true;
+			else { return false; }
+		}
+	}
+	return false;
+}
+
+bool operator == (const DATE &ld, const DATE &rd)
+{
+	if (ld.getYear() == rd.getYear() && ld.getMonth() == rd.getMonth() && 
+		ld.getDay() == rd.getDay())
+	{
+		return true;
+	}
+	return false;
 }
 
 int DATE::toDays() const

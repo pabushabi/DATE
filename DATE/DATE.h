@@ -23,7 +23,10 @@ public:
 	friend ostream& operator << (ostream& os, const DATE dt);
 	friend istream& operator >> (istream& is, DATE& dt);
 	DATE operator + (const DATE &rd);
-	DATE operator-(const DATE &rd);
+	DATE operator - (const DATE &rd);
+	friend bool operator > (const DATE &ld, const DATE &rd);
+	friend bool operator < (const DATE &ld, const DATE &rd);
+	friend bool operator == (const DATE &ld, const DATE &rd);
 	int toDays() const;
 	float toMonths();
 
