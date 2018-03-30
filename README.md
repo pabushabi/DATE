@@ -20,9 +20,23 @@ Simple class for work with date
 * ">" - Больше
 * "<" - Меньше
 * "==" -Равенство
+* "!=" - Не равенство
 
 Также существуют следующие вспомогательные процедуры:
 * "isCorrect()" - Проверка на корректность данных
 * "toDays()" - Конвертирование в дни
 * "toMonths()" - Конвертирование в месяцы
 * "toString()" - Конвертирование в стоку
+
+Пример: 
+``` DATE example, example2;
+cin >> example;
+cin >> example2;
+if (example.isCorrect() && example2.isCorrect()) 
+{
+	if (example != example2) {
+		if (example > example2) cout << example << " is bigger then " << example2;
+		else cout << example2 << " is bigger then " << example;
+	}
+	else cout << example2 << " is equals with " << example;
+} ```

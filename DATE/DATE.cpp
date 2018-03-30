@@ -154,6 +154,16 @@ bool operator == (const DATE &ld, const DATE &rd)
 	return false;
 }
 
+bool operator != (const DATE &ld, const DATE &rd)
+{
+	if (ld.getYear() != rd.getYear() && ld.getMonth() != rd.getMonth() &&
+		ld.getDay() != rd.getDay())
+	{
+		return true;
+	}
+	return false;
+}
+
 int DATE::toDays() const
 {
 	int res = this->year * 365;

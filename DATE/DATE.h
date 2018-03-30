@@ -27,6 +27,7 @@ public:
 	friend bool operator > (const DATE &ld, const DATE &rd);
 	friend bool operator < (const DATE &ld, const DATE &rd);
 	friend bool operator == (const DATE &ld, const DATE &rd);
+	friend bool operator != (const DATE &ld, const DATE &rd);
 	int toDays() const;
 	float toMonths();
 	string toString();
