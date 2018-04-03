@@ -14,6 +14,7 @@ int main()
 	cout << dt << endl;
 
 	DATE dtt;
+	cin >> dtt;
 //	cin >> dtt;
 //	cout << dtt << endl;
 //
@@ -27,9 +28,11 @@ int main()
 //	else cout << "isn`t correct" << endl;
 
 	DATE dttt;
-	cin >> dttt;
-	if (dttt == dt) cout << "yes" << endl;
-	else cout << "no" << endl;
+//	cin >> dttt;
+//	if (dttt == dt) cout << "yes" << endl;
+//	else cout << "no" << endl;
+	dttt = dt - dtt;
+	cout << dttt;
 
     return 0;
 }

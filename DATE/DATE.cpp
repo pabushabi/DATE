@@ -5,7 +5,7 @@ DATE::DATE()
 {
 	setDay(01);
 	setMonth(01);
-	setYear(1970);
+	setYear(1000);
 }
 
 DATE::DATE(int dd, int mm, int yyyy)
@@ -96,6 +96,16 @@ DATE DATE::operator + (const DATE &rd) const
 	res.day = this->day + rd.day;
 	res.month = this->month + rd.month;
 	res.year = this->year + rd.year;
+	if (res.day > 31) 
+	{
+		res.month++;
+		res.day -= 31;
+	}
+	if (res.month > 12)
+	{
+		res.year++;
+		res.month -= 12;
+	}
 	return res;
 }
 
@@ -105,6 +115,16 @@ DATE DATE::operator - (const DATE &rd) const
 	res.day = this->day - rd.day;
 	res.month = this->month - rd.month;
 	res.year = this->year - rd.year;
+	if (res.day < 1)
+	{
+		res.month--;
+		res.day += 31;
+	}
+	if (res.month < 1)
+	{
+		res.year--;
+		res.month += 13;
+	}
 	return res;
 }
 
