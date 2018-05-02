@@ -31,10 +31,13 @@ public:
 	int toDays() const;
 	float toMonths() const;
 	string toString() const;
+	void leapYear();
+	bool isLeap();
 
 private:
 	int day;
 	int month;
 	int year;
+	bool leap = false;
 };
 

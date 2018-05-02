@@ -6,6 +6,7 @@ DATE::DATE()
 	setDay(01);
 	setMonth(01);
 	setYear(1000);
+	leapYear();
 }
 
 DATE::DATE(int dd, int mm, int yyyy)
@@ -13,6 +14,7 @@ DATE::DATE(int dd, int mm, int yyyy)
 	setDay(dd);
 	setMonth(mm);
 	setYear(yyyy);
+	leapYear();
 }
 
 
@@ -189,76 +191,98 @@ int DATE::toDays() const
 	int res = this->year * 365;
 	int tmp = 0;
 
-	switch (this->month)
+	if (leap)
 	{
-	case 1:
+		switch (this->month)
+		{
+		case 1:
+			tmp += 31;
+			break;
+		case 2:
+			tmp += 60;
+			break;
+		case 3:
+			tmp += 91;
+			break;
+		case 4:
+			tmp += 121;
+			break;
+		case 5:
+			tmp += 152;
+			break;
+		case 6:
+			tmp += 182;
+			break;
+		case 7:
+			tmp += 213;
+			break;
+		case 8:
+			tmp += 244;
+			break;
+		case 9:
+			tmp += 274;
+			break;
+		case 10:
+			tmp += 305;
+			break;
+		case 11:
+			tmp += 335;
+			break;
+		case 12:
+			tmp += 366;
+			break;
+		}
+	}
+	else
 	{
-		tmp += 31;
-		break;
+		switch (this->month)
+		{
+		case 1:
+			tmp += 31;
+			break;
+		case 2:
+			tmp += 59;
+			break;
+		case 3:
+			tmp += 90;
+			break;
+		case 4:
+			tmp += 120;
+			break;
+		case 5:
+			tmp += 151;
+			break;
+		case 6:
+			tmp += 181;
+			break;
+		case 7:
+			tmp += 212;
+			break;
+		case 8:
+			tmp += 243;
+			break;
+		case 9:
+			tmp += 273;
+			break;
+		case 10:
+			tmp += 304;
+			break;
+		case 11:
+			tmp += 334;
+			break;
+		case 12:
+			tmp += 365;
+			break;
+		}
 	}
-	case 2:
-	{
-		tmp += 59;
-		break;
-	}
-	case 3:
-	{
-		tmp += 90;
-		break;
-	}
-	case 4:
-	{
-		tmp += 120;
-		break;
-	}
-	case 5:
-	{
-		tmp += 151;
-		break;
-	}
-	case 6:
-	{
-		tmp += 181;
-		break;
-	}
-	case 7:
-	{
-		tmp += 212;
-		break;
-	}
-	case 8:
-	{
-		tmp += 243;
-		break;
-	}
-	case 9:
-	{
-		tmp += 273;
-		break;
-	}
-	case 10:
-	{
-		tmp += 304;
-		break;
-	}
-	case 11:
-	{
-		tmp += 334;
-		break;
-	}
-	case 12:
-	{
-		tmp += 365;
-		break;
-	}
-	}
+	
 	res += tmp + this->day;
 	return res;
 }
 
 float DATE::toMonths() const
 {
-	int tmp = this->year * 12;
+	auto tmp = this->year * 12;
 	float res = this->day / 12;
 	res += tmp;
 	return res;
@@ -269,4 +293,15 @@ string DATE::toString() const
 	string res;
 	res = this->getDay() + this->getMonth() + this->getYear();
 	return res;
+}
+
+void DATE::leapYear()
+{
+	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) leap = true;
+	leap = false; 
+}
+
+bool DATE::isLeap()
+{
+	return leap;
 }
