@@ -2,6 +2,7 @@
 #include <ostream>
 #include <ostream>
 #include <istream>
+#include <map>
 
 using namespace std;
 
@@ -28,16 +29,27 @@ public:
 	friend bool operator < (const DATE &ld, const DATE &rd);
 	friend bool operator == (const DATE &ld, const DATE &rd);
 	friend bool operator != (const DATE &ld, const DATE &rd);
-	int toDays() const;
+	int toDays() ;
 	float toMonths() const;
 	string toString() const;
-	void leapYear();
-	bool isLeap();
+	bool isLeap() const;
 
 private:
 	int day;
 	int month;
 	int year;
-	bool leap = false;
+	map<int, int> m_d = { {1, 31},
+	{2, 28},
+	{3, 31},
+	{4, 30},
+	{5, 31},
+	{6, 30},
+	{7, 31},
+	{8, 31},
+	{9, 30},
+	{10, 31},
+	{11, 30},
+	{12, 31}
+	};
 };
 

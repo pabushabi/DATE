@@ -10,11 +10,11 @@ using namespace std;
 int main()
 {
 	DATE dt;
-	//cin >> dt;
-	cout << dt << endl;
+	cin >> dt;
+	//cout << dt << endl;
 
 	DATE dtt;
-	cin >> dtt;
+//	cin >> dtt;
 //	cin >> dtt;
 //	cout << dtt << endl;
 //
@@ -22,18 +22,20 @@ int main()
 //
 //	cout << dt << endl;
 	cout << dt.toDays() << endl;
-	cout << dtt.toDays() << endl;
+//	cout << dtt.toDays() << endl;
+	cout << dt.isLeap() << endl;
 //	cout << dt.toMonths() << endl;
 //
-//	if (dt.isCorrect()) { cout << "correct" << endl; }
-//	else { cout << "isn`t correct" << endl; }
+	if (dt.isCorrect()) { cout << "correct" << endl; }
+	else { cout << "isn`t correct" << endl; }
 	
 
 //	cin >> dttt;
 //	if (dttt == dt) cout << "yes" << endl;
 //	else cout << "no" << endl;
-	DATE dttt = dt - dtt;
-	cout << dttt;
+//	DATE dttt = dt - dtt;
+	cout << dt << endl;
+
 
     return 0;
 }

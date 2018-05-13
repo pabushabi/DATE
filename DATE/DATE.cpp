@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "DATE.h"
+#include <iostream>
 
 DATE::DATE()
 {
 	setDay(01);
 	setMonth(01);
 	setYear(1000);
-	leapYear();
 }
 
 DATE::DATE(int dd, int mm, int yyyy)
@@ -14,7 +14,6 @@ DATE::DATE(int dd, int mm, int yyyy)
 	setDay(dd);
 	setMonth(mm);
 	setYear(yyyy);
-	leapYear();
 }
 
 
@@ -61,11 +60,11 @@ void DATE::setAll(int day, int month, int year)
 
 bool DATE::isCorrect() const
 {
-	if (month > 13 || month < 2 || day > 32 || day < 2)
-	{
-		return false;
-	}
-	return true;
+	for (auto i = m_d.begin(); i != m_d.end(); i++)
+		if (month == i->first)
+			if (day <= i->second && day > 0)
+				return true;
+	return false;
 }
 
 ostream& operator << (ostream &os, const DATE dt)
@@ -83,9 +82,7 @@ istream& operator >> (istream &is, DATE& dt)
 DATE &DATE::operator = (const DATE &rd)
 {
 	if (this == &rd)
-	{
 		return  *this;
-	}
 	this->day = rd.day;
 	this->month = rd.month;
 	this->year = rd.year;
@@ -133,9 +130,7 @@ DATE DATE::operator - (const DATE &rd) const
 bool operator > (const DATE &ld, const DATE &rd)
 {
 	if (ld.getYear() > rd.getYear())
-	{
 		return true;
-	}
 	else if (ld.getYear() == rd.getYear())
 	{
 		if (ld.getMonth() > rd.getMonth()) return true;
@@ -151,9 +146,7 @@ bool operator > (const DATE &ld, const DATE &rd)
 bool operator < (const DATE &ld, const DATE &rd)
 {
 	if (ld.getYear() < rd.getYear())
-	{
 		return true;
-	}
 	else if (ld.getYear() == rd.getYear())
 	{
 		if (ld.getMonth() < rd.getMonth()) return true;
@@ -170,9 +163,7 @@ bool operator == (const DATE &ld, const DATE &rd)
 {
 	if (ld.getYear() == rd.getYear() && ld.getMonth() == rd.getMonth() && 
 		ld.getDay() == rd.getDay())
-	{
 		return true;
-	}
 	return false;
 }
 
@@ -180,104 +171,45 @@ bool operator != (const DATE &ld, const DATE &rd)
 {
 	if (ld.getYear() != rd.getYear() && ld.getMonth() != rd.getMonth() &&
 		ld.getDay() != rd.getDay())
-	{
 		return true;
-	}
 	return false;
 }
 
-int DATE::toDays() const
+int DATE::toDays()
 {
-	int res = this->year * 365;
+	//int res = this->year * 365;
+	int res = 0;
 	int tmp = 0;
+	int tmmp = 0;
+	int tm = this->year;
 
-	if (leap)
-	{
-		switch (this->month)
+	if (year >= 0)
+	for (year--; year > 0; year--)
+		for (auto i = m_d.begin(); i != m_d.end(); i++)
 		{
-		case 1:
-			tmp += 31;
-			break;
-		case 2:
-			tmp += 60;
-			break;
-		case 3:
-			tmp += 91;
-			break;
-		case 4:
-			tmp += 121;
-			break;
-		case 5:
-			tmp += 152;
-			break;
-		case 6:
-			tmp += 182;
-			break;
-		case 7:
-			tmp += 213;
-			break;
-		case 8:
-			tmp += 244;
-			break;
-		case 9:
-			tmp += 274;
-			break;
-		case 10:
-			tmp += 305;
-			break;
-		case 11:
-			tmp += 335;
-			break;
-		case 12:
-			tmp += 366;
-			break;
+			if (i->first == 2 && isLeap())
+				tmp += i->second + 1;
+			else  tmp += i->second;
 		}
-	}
 	else
 	{
-		switch (this->month)
-		{
-		case 1:
-			tmp += 31;
-			break;
-		case 2:
-			tmp += 59;
-			break;
-		case 3:
-			tmp += 90;
-			break;
-		case 4:
-			tmp += 120;
-			break;
-		case 5:
-			tmp += 151;
-			break;
-		case 6:
-			tmp += 181;
-			break;
-		case 7:
-			tmp += 212;
-			break;
-		case 8:
-			tmp += 243;
-			break;
-		case 9:
-			tmp += 273;
-			break;
-		case 10:
-			tmp += 304;
-			break;
-		case 11:
-			tmp += 334;
-			break;
-		case 12:
-			tmp += 365;
-			break;
-		}
+		for (year++; year < 0; year++)
+			for (auto i = m_d.begin(); i != m_d.end(); i++)
+			{
+				if (i->first == 2 && isLeap())
+					tmp += i->second + 1;
+				else  tmp += i->second;
+			}
 	}
-	
-	res += tmp + this->day;
-	return res;
+
+	for (auto j = m_d.begin(); j->first < month; j++)
+		if (j->first == 2 && isLeap())
+			tmmp += j->second + 1;
+		else { tmmp += j->second; }
+
+		this->year = tm;
+		res += tmp + tmmp + this->day;
+		return res;
 }
 
 float DATE::toMonths() const
@@ -295,13 +227,10 @@ string DATE::toString() const
 	return res;
 }
 
-void DATE::leapYear()
+bool DATE::isLeap() const
 {
-	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) leap = true;
-	leap = false; 
-}
+	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+		return true;
+	return false; 
 
-bool DATE::isLeap()
-{
-	return leap;
 }
