@@ -1,4 +1,4 @@
 ﻿  DATE.cpp
-c:\documents\visual studio 2015\projects\daate\date\date.cpp(218): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+c:\documents\visual studio 2015\projects\daate\date\date.cpp(231): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
   DATE.vcxproj -> C:\Documents\Visual Studio 2015\Projects\daate\Debug\DATE.exe
   DATE.vcxproj -> C:\Documents\Visual Studio 2015\Projects\daate\Debug\DATE.pdb (Full PDB)

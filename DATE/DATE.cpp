@@ -95,11 +95,15 @@ DATE DATE::operator + (const DATE &rd) const
 	res.day = this->day + rd.day;
 	res.month = this->month + rd.month;
 	res.year = this->year + rd.year;
-	if (res.day > 31) 
+	for (auto i = m_d.begin(); i != m_d.end(); i++)
 	{
-		res.month++;
-		res.day -= 31;
+		if (res.month == i->first && res.day > i->second)
+		{
+			res.month++;
+			res.day -= i->second;
+		}
 	}
+	
 	if (res.month > 12)
 	{
 		res.year++;
@@ -114,16 +118,26 @@ DATE DATE::operator - (const DATE &rd) const
 	res.day = this->day - rd.day;
 	res.month = this->month - rd.month;
 	res.year = this->year - rd.year;
-	if (res.day < 1)
+
+	for (auto i = m_d.begin(); i != m_d.end(); i++)
 	{
-		res.month--;
-		res.day += 31;
+		if (res.month < 1)
+		{
+			res.year--;
+			res.month += 12;
+		}
+		if (res.month == i->first && res.day < 1)
+		{
+			if (res.month == 1) res.month = 12;
+			else res.month--;
+			if (i->first == 1) 
+				for (auto j = 1; j < 12; j++)
+					i++;
+			else i--;
+			res.day += i->second;
+		}
 	}
-	if (res.month < 1)
-	{
-		res.year--;
-		res.month += 13;
-	}
+	
 	return res;
 }
 
@@ -131,13 +145,13 @@ bool operator > (const DATE &ld, const DATE &rd)
 {
 	if (ld.getYear() > rd.getYear())
 		return true;
-	else if (ld.getYear() == rd.getYear())
+	if (ld.getYear() == rd.getYear())
 	{
 		if (ld.getMonth() > rd.getMonth()) return true;
-		else if (ld.getMonth() == rd.getMonth())
+		if (ld.getMonth() == rd.getMonth())
 		{
 			if (ld.getDay() > rd.getDay()) return true;
-			else { return false; }
+			return false;
 		}
 	}
 	return false;
@@ -147,13 +161,13 @@ bool operator < (const DATE &ld, const DATE &rd)
 {
 	if (ld.getYear() < rd.getYear())
 		return true;
-	else if (ld.getYear() == rd.getYear())
+	if (ld.getYear() == rd.getYear())
 	{
 		if (ld.getMonth() < rd.getMonth()) return true;
-		else if (ld.getMonth() == rd.getMonth())
+		if (ld.getMonth() == rd.getMonth())
 		{
 			if (ld.getDay() < rd.getDay()) return true;
-			else { return false; }
+			return false;
 		}
 	}
 	return false;
@@ -177,7 +191,6 @@ bool operator != (const DATE &ld, const DATE &rd)
 
 int DATE::toDays()
 {
-	//int res = this->year * 365;
 	int res = 0;
 	int tmp = 0;
 	int tmmp = 0;

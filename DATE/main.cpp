@@ -14,14 +14,15 @@ int main()
 	//cout << dt << endl;
 
 	DATE dtt;
+	cin >> dtt;
 //	cin >> dtt;
 //	cin >> dtt;
 //	cout << dtt << endl;
 //
-//	dt = dt + dtt;
+	dt = dt - dtt;
 //
 //	cout << dt << endl;
-	cout << dt.toDays() << endl;
+//	cout << dt.toDays() << endl;
 //	cout << dtt.toDays() << endl;
 	cout << dt.isLeap() << endl;
 //	cout << dt.toMonths() << endl;
